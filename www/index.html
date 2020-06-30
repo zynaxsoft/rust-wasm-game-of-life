@@ -14,11 +14,24 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-color: #002b36;
 }
+#canvas-container {
+    padding-bottom: 10px;
+}
+
+a:link, a:visited {
+    color: #839496;
+}
+
 </style>
   </head>
   <body>
-    <pre id="game-of-life-canvas"></pre>
+    <h1 style="color: #839496">Game Of Life</h1>
+    <div id=canvas-container>
+    <canvas id="game-of-life-canvas"></canvas>
+    </div>
+    <a href="https://github.com/zynaxsoft/rust-wasm-game-of-life" target="_blank">Github</a>
     <script src="./bootstrap.js"></script>
   </body>
 </html>
