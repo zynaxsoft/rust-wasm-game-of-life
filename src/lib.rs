@@ -22,6 +22,15 @@ pub enum Cell {
     Alive = 1,
 }
 
+impl Cell {
+    fn toggle(&mut self) {
+        *self = match *self {
+            Cell::Dead => Cell::Alive,
+            Cell::Alive => Cell::Dead,
+        };
+    }
+}
+
 #[wasm_bindgen]
 #[derive(Default)]
 pub struct Universe {
@@ -84,13 +93,13 @@ impl Universe {
                 let cell = self.cells[idx];
                 let live_neighbors = self.live_neighbor_count(row, col);
 
-                log!(
-                    "cell[{}, {}] is initially {:?} and has {} live neighbors",
-                    row,
-                    col,
-                    cell,
-                    live_neighbors
-                );
+                // log!(
+                //     "cell[{}, {}] is initially {:?} and has {} live neighbors",
+                //     row,
+                //     col,
+                //     cell,
+                //     live_neighbors
+                // );
                 let next_cell = match (cell, live_neighbors) {
                     // The rules
                     (Cell::Alive, x) if x < 2 => Cell::Dead,
@@ -100,7 +109,7 @@ impl Universe {
                     (otherwise, _) => otherwise,
                 };
 
-                log!("    it becomes {:?}", next_cell);
+                // log!("    it becomes {:?}", next_cell);
 
                 next[idx] = next_cell;
             }
@@ -128,6 +137,12 @@ impl Universe {
 
     pub fn cells(&self) -> *const Cell {
         self.cells.as_ptr()
+    }
+
+    pub fn toggle_cell(&mut self, row: u32, column: u32) {
+        let idx = self.get_index(row, column);
+        log!("Toggling cell {} {}", row, column);
+        self.cells[idx].toggle();
     }
 }
 
