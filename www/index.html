@@ -20,6 +20,11 @@ body {
 #canvas-container {
     padding-bottom: 10px;
 }
+button {
+  height: 2em;
+  background-color: #002b36;
+  color: #839496;
+}
 
 a:link, a:visited {
     color: #839496;
@@ -31,6 +36,9 @@ a:link, a:visited {
     <h1 style="color: #839496">Game Of Life</h1>
     <div id=canvas-container>
     <canvas id="game-of-life-canvas"></canvas>
+    </div>
+    <div id=buttons>
+      <button id="play-pause"></button>
     </div>
     Refresh to regenerate a new universe.
     <a href="https://github.com/zynaxsoft/rust-wasm-game-of-life" target="_blank">Github</a>
