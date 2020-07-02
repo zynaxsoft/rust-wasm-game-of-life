@@ -23,6 +23,7 @@ pub enum Cell {
 }
 
 #[wasm_bindgen]
+#[derive(Default)]
 pub struct Universe {
     width: u32,
     height: u32,
@@ -150,7 +151,7 @@ impl fmt::Display for Universe {
                 let symbol = if cell == Cell::Dead { '◻' } else { '◼' };
                 write!(f, "{}", symbol)?;
             }
-            write!(f, "\n")?;
+            writeln!(f)?;
         }
         Ok(())
     }
